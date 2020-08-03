@@ -16,7 +16,8 @@
 	height: 50vh;
 	width: 100%;
 	border-radius: 15px;
-	background: url("./weather.jpg") center center / cover no-repeat;
+	background: url("https://res.cloudinary.com/lawfirm1000/image/upload/v1596453801/weather_yodqte.jpg")
+		center center / cover no-repeat;
 }
 @media (min-width: 768px) {
 	.homeImg {

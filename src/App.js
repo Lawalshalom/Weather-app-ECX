@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { dailyd3Func } from "./dailyd3";
 import "./App.css";
 
   const App = () => {
@@ -13,7 +12,6 @@ import "./App.css";
       const weatherDiv = document.querySelector(".weatherDiv");
       const time = new Date();
       time.setTime(Date.now());
-      console.log(data)
       const { visibility } = data.current;
       const { wind_deg, wind_speed } = data.current;
       const sunrise = new Date(0);
@@ -49,68 +47,6 @@ import "./App.css";
       <p><i class="fa fa-low-vision" aria-hidden="true"></i>  Visibility: ${visibility}</p>
       </div>
       `;
-      //data visualization for 24-hourly data
-      const hourlyData = data.hourly;
-      const hourlyTemp = [];
-      const hourlyTime = [];
-      hourlyData.map(hour => {
-        const temperature = hour.temp - 273;
-        hourlyTemp.push(temperature.toFixed(2));
-        const hourTime = new Date(0);
-        hourTime.setUTCSeconds(hour.dt);
-        return hourlyTime.push(hourTime.toLocaleTimeString());
-      });
-
-      //data visualization for 8-day data
-      const dailyData = data.daily;
-      const dailyTemp = [];
-      const cloudNumber = [];
-      const dailyDesc = [];
-      const dailyTime = [];
-      dailyData.map(day =>{
-       const temperature = day.temp.day - 273;
-       dailyTemp.push(temperature.toFixed(2));
-       const dayTime = new Date(0);
-       dayTime.setUTCSeconds(day.dt);
-       cloudNumber.push(day.clouds);
-       dailyDesc.push(day.weather[0].description);
-       return dailyTime.push(dayTime.toDateString());
-      });
-
-      const hourlyd3Data = [];
-      for(let i=0; i<hourlyTemp.length; i++){
-        for(let j=0; j<hourlyTime.length; j++){
-          if(i === j){
-            hourlyd3Data.push({
-             time: hourlyTime[j],
-            temp: hourlyTemp[i] })
-          }
-      }
-    }
-
-      const dailyd3Data = []
-      for(let i=0; i<dailyTemp.length; i++){
-        for(let j=0; j<cloudNumber.length; j++){
-          for(let k = 0; k<dailyTime.length; k++){
-            for(let l=0; l<dailyDesc.length; l++){
-              if(i===j){
-                if(j===k){
-                  if(k===l){
-                dailyd3Data.push({
-                  time: dailyTime[k],
-                  temp: dailyTemp[i],
-                  cloudNumber: cloudNumber[j],
-                  description: dailyDesc[l]
-                })
-               }
-              }
-             }
-            }
-          }
-        }
-      };
-      console.log(hourlyd3Data)
-      console.log(dailyd3Data)
     }
 
     useEffect(() => {
