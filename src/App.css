@@ -6,11 +6,21 @@
 #root {
 	background: linear-gradient(to right, #0606af6e, rgba(255, 0, 0, 0.397));
 }
+html::-webkit-scrollbar {
+	display: none;
+}
+html {
+	animation: slideInRight 2s;
+}
+
 .center {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+.home {
+	margin-top: 15px;
 }
 .homeImg {
 	height: 50vh;
